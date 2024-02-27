@@ -1,3 +1,24 @@
+## 踩坑日記
+
+1. **no module named packaging**: occurs when running `python demos/demo_reconstruct.py -i TestSamples/examples --saveDepth True --saveObj True`, just install it.
+2. **AttributeError: _2D**: change `_2D` to `TWO_D`
+3. **_pickle.UnpicklingError: invalid load key, '<'**: problem of `deca_model.tar` downloading. downloads the model from the link: https://drive.google.com/file/d/1rp8kdyLPvErw2dTmqtjISRVvQLj6Yzje/view
+
+```
+bash install_conda.sh
+conda activate deca
+bash fetch_data.sh
+```
+
+```
+python demos/demo_reconstruct.py -i TestSamples/examples --saveDepth True --saveObj True
+```
+
+**!!Note!!**: 生成的影片是沒有聲音的，需要自行配音；render只會render validation的資料(影片後1/11部分吧，沒記錯的話)，要render全部的話需要手動modify transforms_val.json；改輸入影片解析度感覺起來是不用重train base model(因為測試後效果差不多)，但可能會出現tensor shape不對的問題，pdb那一行會有問題，最後是把1024改成128(解析度改成450時)這樣勉強可以執行
+
+---
+
+
 # DECA: Detailed Expression Capture and Animation (SIGGRAPH2021)
 
 <p align="center"> 
