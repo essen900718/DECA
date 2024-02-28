@@ -4,6 +4,7 @@
 2. **AttributeError: _2D**: change `_2D` to `TWO_D`
 3. **_pickle.UnpicklingError: invalid load key, '<'**: problem of `deca_model.tar` downloading. downloads the model from the link: https://drive.google.com/file/d/1rp8kdyLPvErw2dTmqtjISRVvQLj6Yzje/view
 4. **AttributeError: extract_tex**: occurs when running `teaser.py` and `transfer.py` with `--useTex True` command, see [#issue 160](https://github.com/yfeng95/DECA/issues/160) (still unsolve...)
+5. **RuntimeError: Can't call numpy() on Tensor that requires grad. Use tensor.detach().numpy() instead.**: occurs when running `transfer.py` with `--saveObj True` command. Modify **displacement_map = opdict['displacement_map'][i].cpu().numpy().squeeze()**, line 304 in `/DECA/decalib/deca.py`, to **displacement_map = opdict['displacement_map'][i].cpu().detach().numpy().squeeze()** (add detach())
 
 ```
 bash install_conda.sh
